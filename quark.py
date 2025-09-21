@@ -66,7 +66,7 @@ while True:
     print()
     for task in task_list:
                 print()
-                print(f"{task.id} | Description: {task.description} | Status: {task.status} | Created on: {task.createdAt} | Last updated: {task.updatedAt}")
+                print(f"{task.id} | Description: {task.description} | Status: {task.status}")
     print()
     print("~~~ User Options ~~~")
     print()
@@ -116,12 +116,17 @@ while True:
                 task.status = task_status
 
     elif command == "3":
+        print()
+        print("~~~ Your Current Tasks ~~~")
         if not task_list:
             print("No tasks yet!")
         else:
             for task in task_list:
                 print()
                 print(f"{task.id} | Description: {task.description} | Status: {task.status} | Created on: {task.createdAt} | Last updated: {task.updatedAt}")
+        print()
+        print("Press Enter to return to main menu...")
+        input()
 
     elif command == "4":
         print("Goodbye!")
