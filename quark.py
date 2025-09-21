@@ -20,6 +20,7 @@ while True:
     print("1: Add, edit, or delete a task")
     print("2: Update task status")
     print("3: List your tasks")
+    print("4: Quit program")
 
     command = input("What would you like to do? ")
 
@@ -29,9 +30,13 @@ while True:
         print("3: Delete a task")
         command_2 = input("Pick an option: ")
         if command_2 == "1":
-            task_description = input("Enter a task to add to the list: ")
-            task = Task(task_description, "ongoing", "test", "test")
-            task_list.append(task)
+            while True:
+                task_description = input("Enter a task to add to the list (Enter 'q' to finish entry!): ")
+                if task_description.lower() == "q":
+                    break
+                else:
+                    task = Task(task_description, "ongoing", "test", "test")
+                    task_list.append(task)
 
     elif command == "2":
         print("ok")
@@ -40,7 +45,11 @@ while True:
             print("No tasks yet!")
         else:
             for task in task_list:
-                    print(task.id)
-                    print(task.description)
+                    print(f"{task.id} - {task.description}")
+
+    elif command == "4":
+        print("Goodbye!")
+        break
+
     else:
         print("Incorrect input, please try again!")
