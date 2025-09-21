@@ -8,6 +8,8 @@ class Task():
         self.createdAt = createdAt
         self.updatedAt = updatedAt
 
+task_list = []
+
 print("--- Quark 3000: Task Tracker Supreme ---")
 print()
 print("1: Add, edit, or delete a task")
@@ -24,6 +26,9 @@ if command == "1":
     if command_2 == "1":
         task_description = input("Enter a task to add to the list: ")
         task = Task(1, task_description, "ongoing", "test", "test")
+        task_list.append(task)
+        for task in task_list:
+            print(task.description)
 
 elif command == "2":
     print("ok")
