@@ -1,5 +1,6 @@
 # CLI task tracking program created by Natsil
 
+import json
 import datetime
 
 class Task():
@@ -17,7 +18,28 @@ task_list = []
 
 while True:
     print()
-    print("--- Quark 3000: Task Tracker Supreme ---")
+    print ("""
+             ,o888888o.     8 8888      88        .8.          8 888888888o.   8 8888     ,88' 
+          . 8888     `88.   8 8888      88       .888.         8 8888    `88.  8 8888    ,88'  
+         ,8 8888       `8b  8 8888      88      :88888.        8 8888     `88  8 8888   ,88'   
+         88 8888        `8b 8 8888      88     . `88888.       8 8888     ,88  8 8888  ,88'    
+         88 8888         88 8 8888      88    .8. `88888.      8 8888.   ,88'  8 8888 ,88'     
+         88 8888     `8. 88 8 8888      88   .8`8. `88888.     8 888888888P'   8 8888 88'      
+         88 8888      `8,8P 8 8888      88  .8' `8. `88888.    8 8888`8b       8 888888<       
+         `8 8888       ;8P  ` 8888     ,8P .8'   `8. `88888.   8 8888 `8b.     8 8888 `Y8.     
+          ` 8888     ,88'8.   8888   ,d8P .888888888. `88888.  8 8888   `8b.   8 8888   `Y8.   
+             `8888888P'  `8.   `Y88888P' .8'       `8. `88888. 8 8888     `88. 8 8888     `Y8. 
+                            
+                        ~~~   Task Tracker Supreme | Developed by Natsil ~~~
+             """)
+    print()
+    print("~~~ Your Current Tasks ~~~")
+    print()
+    for task in task_list:
+                print()
+                print(f"{task.id} | Description: {task.description} | Status: {task.status} | Created on: {task.createdAt} | Last updated: {task.updatedAt}")
+    print()
+    print("~~~ User Options ~~~")
     print()
     print("1: Add, edit, or delete a task")
     print("2: Update task status")
