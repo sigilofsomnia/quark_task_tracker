@@ -62,12 +62,12 @@ while True:
                         ~~~   Task Tracker Supreme | Developed by Natsil ~~~
              """)
     print()
-    print("~~~ Your Current Tasks ~~~")
+    print("~~~ YOUR CURRENT TASKS ~~~")
     for task in task_list:
                 print()
-                print(f"{task.id} | Description: {task.description} | Status: {task.status}")
+                print(f"{task.id} | {task.description} | {task.status}")
     print()
-    print("~~~ User Options ~~~")
+    print("~~~ USER OPTIONS ~~~")
     print()
     print("1: Add, edit, or delete a task")
     print("2: Update task status")
@@ -116,7 +116,7 @@ while True:
 
     elif command == "3":
         print()
-        print("~~~ Your Current Tasks ~~~")
+        print("~~~ YOUR CURRENT TASKS ~~~")
         if not task_list:
             print("No tasks yet!")
         else:
