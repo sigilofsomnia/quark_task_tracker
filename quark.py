@@ -63,7 +63,6 @@ while True:
              """)
     print()
     print("~~~ Your Current Tasks ~~~")
-    print()
     for task in task_list:
                 print()
                 print(f"{task.id} | Description: {task.description} | Status: {task.status}")
