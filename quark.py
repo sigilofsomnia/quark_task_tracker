@@ -37,6 +37,13 @@ while True:
                 else:
                     task = Task(task_description, "ongoing", "test", "test")
                     task_list.append(task)
+        elif command_2 == "2":
+            edit = input("Which task do you want to edit? (Enter task number): ")
+            for task in task_list:
+                if int(edit) == task.id:
+                    task.description = input("Enter edited task description: ")
+                else:
+                    break
 
     elif command == "2":
         print("ok")
