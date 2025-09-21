@@ -1,5 +1,6 @@
 # CLI task tracking program created by Natsil
 
+import datetime
 
 class Task():
     id_counter = 0
@@ -15,12 +16,14 @@ class Task():
 task_list = []
 
 while True:
+    print()
     print("--- Quark 3000: Task Tracker Supreme ---")
     print()
     print("1: Add, edit, or delete a task")
     print("2: Update task status")
     print("3: List your tasks")
     print("4: Quit program")
+    print()
 
     command = input("What would you like to do? ")
 
@@ -29,30 +32,45 @@ while True:
         print("2: Edit a task")
         print("3: Delete a task")
         command_2 = input("Pick an option: ")
+
         if command_2 == "1":
             while True:
                 task_description = input("Enter a task to add to the list (Enter 'q' to finish entry!): ")
+                created_time = datetime.datetime.now()
+                created_time_formatted = created_time.strftime("%d-%m-%y %H:%M:%S")
                 if task_description.lower() == "q":
                     break
                 else:
-                    task = Task(task_description, "ongoing", "test", "test")
+                    task = Task(task_description, "Incomplete", created_time_formatted, created_time_formatted)
                     task_list.append(task)
+
         elif command_2 == "2":
             edit = input("Which task do you want to edit? (Enter task number): ")
             for task in task_list:
                 if int(edit) == task.id:
                     task.description = input("Enter edited task description: ")
-                else:
-                    break
+
+        elif command_2 == "3":
+            delete = input("Which task do you want to delete? (Enter task number): ")
+            for task in task_list:
+                if int(delete) == task.id:
+                    delete_id = task.id - 1
+                    del task_list[delete_id]
 
     elif command == "2":
-        print("ok")
+        status = input("Which task's status do you want to update? (Enter task number): ")
+        for task in task_list:
+            if int(status) == task.id:
+                task_status = input("What is the status of the task? ")
+                task.status = task_status
+
     elif command == "3":
         if not task_list:
             print("No tasks yet!")
         else:
             for task in task_list:
-                    print(f"{task.id} - {task.description}")
+                print()
+                print(f"{task.id} | Description: {task.description} | Status: {task.status} | Created on: {task.createdAt} | Last updated: {task.updatedAt}")
 
     elif command == "4":
         print("Goodbye!")
