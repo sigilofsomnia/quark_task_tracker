@@ -2,19 +2,48 @@
 
 import json
 import datetime
+import os
+
+def save_tasks(tasks, filename="tasks.json"):
+    with open(filename, "w") as f:
+        json.dump([t.to_dict() for t in tasks], f, indent=4)
+
+def load_tasks(filename="tasks.json"):
+    if not os.path.exists(filename) or os.path.getsize(filename) == 0:
+        return []
+    with open(filename, "r") as f:
+        data = json.load(f)
+        return [Task.from_dict(d) for d in data]
 
 class Task():
     id_counter = 0
 
-    def __init__(self, description, status, createdAt, updatedAt):
-        Task.id_counter += 1
-        self.id = Task.id_counter
+    def __init__(self, description, status, createdAt, updatedAt, id=None):
+        if id is None:
+            Task.id_counter += 1
+            self.id = Task.id_counter
+        else:
+            self.id = id
+            Task.id_counter = max(Task.id_counter, id)
         self.description = description
         self.status = status
         self.createdAt = createdAt
         self.updatedAt = updatedAt
 
-task_list = []
+    def to_dict(self):
+        return self.__dict__
+
+    @classmethod
+    def from_dict(cls, data):
+        return cls(
+            description=data["description"],
+            status=data["status"],
+            createdAt=data["createdAt"],
+            updatedAt=data["updatedAt"],
+            id=data["id"]
+        )
+
+task_list = load_tasks()
 
 while True:
     print()
@@ -96,6 +125,7 @@ while True:
 
     elif command == "4":
         print("Goodbye!")
+        save_tasks(task_list)
         break
 
     else:
