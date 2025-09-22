@@ -91,7 +91,7 @@ while True:
                 if task_description.lower() == "q":
                     break
                 else:
-                    task = Task(task_description, "Incomplete", created_time_formatted, created_time_formatted)
+                    task = Task(task_description, "In-Progress", created_time_formatted, created_time_formatted)
                     task_list.append(task)
 
         elif command_2 == "2":
@@ -108,11 +108,36 @@ while True:
                     del task_list[delete_id]
 
     elif command == "2":
+        print()
+        print("~~~ YOUR CURRENT TASKS ~~~")
+        for task in task_list:
+                    print()
+                    print(f"{task.id} | {task.description} | {task.status}")
+        print()
         status = input("Which task's status do you want to update? (Enter task number): ")
         for task in task_list:
-            if int(status) == task.id:
-                task_status = input("What is the status of the task? ")
-                task.status = task_status
+            try:
+                if int(status) == task.id:
+                    updated_time = datetime.datetime.now()
+                    updated_time_formatted = updated_time.strftime("%d-%m-%y %H:%M:%S")
+                    print("1: Complete")
+                    print("2: Incomplete")
+                    print("3: In-Progress")
+                    task_status = input("What is the status of the task? (Enter relavent number): ")
+                    
+                    if task_status == "1":
+                        task.status = "Complete"
+                        task.updatedAt = updated_time_formatted
+                    elif task_status == "2":
+                        task.status = "Incomplete"
+                        task.updatedAt = updated_time_formatted
+                    elif task_status == "3":
+                        task.status = "In-Progress"
+                        task.updatedAt = updated_time_formatted
+                    else:
+                        print("Incorrect input, please try again!")
+            except ValueError:
+                print("Please input a valid number!")
 
     elif command == "3":
         print()
