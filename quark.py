@@ -140,17 +140,73 @@ while True:
                 print("Please input a valid number!")
 
     elif command == "3":
+
         print()
-        print("~~~ YOUR CURRENT TASKS ~~~")
-        if not task_list:
-            print("No tasks yet!")
+        print("1: List all tasks")
+        print("2: List all complete tasks")
+        print("3: List all incomplete tasks")
+        print("4: List all in-progress tasks")
+        print()
+        command_3 = input("Select an option (Enter relavent number): ")
+
+        if command_3 == "1":
+            print()
+            print("~~~ YOUR CURRENT TASKS ~~~")
+            if not task_list:
+                print("No tasks yet!")
+            else:
+                for task in task_list:
+                    print()
+                    print(f"{task.id} | Description: {task.description} | Status: {task.status} | Created on: {task.createdAt} | Last updated: {task.updatedAt}")
+            print()
+            print("Press Enter to return to main menu...")
+            input()
+
+        elif command_3 == "2":
+            print()
+            print("~~~ YOUR COMPLETE TASKS ~~~")
+            if not task_list:
+                print("No tasks yet!")
+            else:
+                for task in task_list:
+                    if task.status == "Complete":
+                        print()
+                        print(f"{task.id} | Description: {task.description} | Status: {task.status} | Created on: {task.createdAt} | Last updated: {task.updatedAt}")
+            print()
+            print("Press Enter to return to main menu...")
+            input()
+
+        elif command_3 == "3":
+            print()
+            print("~~~ YOUR INCOMPLETE TASKS ~~~")
+            if not task_list:
+                print("No tasks yet!")
+            else:
+                for task in task_list:
+                    if task.status == "Incomplete":
+                        print()
+                        print(f"{task.id} | Description: {task.description} | Status: {task.status} | Created on: {task.createdAt} | Last updated: {task.updatedAt}")
+            print()
+            print("Press Enter to return to main menu...")
+            input()
+
+        elif command_3 == "4":
+            print()
+            print("~~~ YOUR IN-PROGRESS TASKS ~~~")
+            if not task_list:
+                print("No tasks yet!")
+            else:
+                for task in task_list:
+                    if task.status == "In-Progress":
+                        print()
+                        print(f"{task.id} | Description: {task.description} | Status: {task.status} | Created on: {task.createdAt} | Last updated: {task.updatedAt}")
+            print()
+            print("Press Enter to return to main menu...")
+            input()
+
         else:
-            for task in task_list:
-                print()
-                print(f"{task.id} | Description: {task.description} | Status: {task.status} | Created on: {task.createdAt} | Last updated: {task.updatedAt}")
-        print()
-        print("Press Enter to return to main menu...")
-        input()
+            print("Incorrect input, please try again!")
+
 
     elif command == "4":
         print("Goodbye!")
